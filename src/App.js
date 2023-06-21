@@ -8,15 +8,34 @@ import axios from 'axios';
 import { Route, Routes } from 'react-router-dom';
 import About from './components/About/About.jsx';
 import Detail from './components/Detail/Detail.jsx';
-
+import Form from './components/Form/Form';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 function App() {
    const [characters, setCharacters] = useState([]);
+   
+   const [access,setAccess] = useState(false)
+   const EMAIL = "admin@admin.com"
+   const PASSWORD = "admin123"
+   const navigate = useNavigate();
 
-   // const onSearch = () =>{
+   const login = (userData) =>{
+      if (userData.password === PASSWORD && userData.email === EMAIL) {
+         setAccess(true);
+         navigate('/home');
+      } else alert('Invalid email or password')
+   }
 
-   //    setCharacters([...characters, example])
-   // }
+   const logout = () => {
+      setAccess(false);
+      navigate('/');
+   }
+
+   useEffect(() => {
+      !access && navigate('/');
+   }, [access]);
 
    const onSearch = (id) => {
 
@@ -55,17 +74,17 @@ function App() {
          </div>
       )
    }
-
+   const {pathname} = useLocation();
 
 
    return (
       <div className='App'>
-         <Nav onSearch={onSearch} random={random} />
          
+         {pathname !== "/" && <Nav onSearch={onSearch} random={random}  logout={logout}/>}
          
 
          <Routes>
-            {/* <Route path="/" element={Landing} /> */}
+            <Route path="/" element={<Form login={login}/>} />
 
             <Route path="/home" element={<Cards characters={characters} onCLose={onCLose} />} />
 
