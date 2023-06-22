@@ -17,7 +17,11 @@ export default function Nav({ onSearch, random,logout }) {
                 </Link>
                 <Link to="/home">
 
-                    <h3>home</h3>
+                    <h3>Home</h3>
+                </Link>
+                <Link to="/favorites">
+
+                    <h3>Favorites</h3>
                 </Link>
                 <button onClick={logout}>
                     Logout

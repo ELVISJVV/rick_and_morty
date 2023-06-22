@@ -12,6 +12,8 @@ import Form from './components/Form/Form';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import Favorite from './components/Favorites/Favorites.jsx';
+
 
 function App() {
    const [characters, setCharacters] = useState([]);
@@ -89,6 +91,7 @@ function App() {
             <Route path="/home" element={<Cards characters={characters} onCLose={onCLose} />} />
 
             <Route path="/about" element={<About/>} />
+            <Route path="/favorites" element={<Favorite/>} />
 
 
             <Route path="/detail/:id" element={<Detail/>} />
