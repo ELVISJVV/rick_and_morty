@@ -1,4 +1,4 @@
-const {ADD_FAV, REMOVE_FAV} = require("./action-types")
+const {ADD_FAV, REMOVE_FAV,FILTER,ORDER} = require("./action-types")
 
 export const addFav = (character) => {
     return {
@@ -15,3 +15,17 @@ export const removeFav = (id) => {
     }
 }
 
+export const filter = (gender) => {
+    return {
+        type: FILTER,
+        payload: gender
+    }
+}
+
+
+export const orderCards = (order) => {
+    return {
+        type: ORDER,
+        payload: order
+    }
+}
