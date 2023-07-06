@@ -14,23 +14,31 @@ import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import Favorite from './components/Favorites/Favorites.jsx';
 
+const URL = 'http://localhost:3001/rickandmorty/login/';
+// const EMAIL = "admin@admin.com"
+// const PASSWORD = "admin123"
+
 
 function App() {
    const [characters, setCharacters] = useState([]);
 
    const [access, setAccess] = useState(false)
-   const EMAIL = "admin@admin.com"
-   const PASSWORD = "admin123"
    const navigate = useNavigate();
 
-   const login = (userData) =>  {
-      const { email, password } = userData;
-      const URL = 'http://localhost:3001/rickandmorty/login/';
-      axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+   const login = async (userData) => {
+
+      try {
+         const { email, password } = userData;
+         const { data } = await axios(URL + `?email=${email}&password=${password}`)
+
          const { access } = data;
          setAccess(access);
          access && navigate('/home');
-      });
+
+      } catch (error) {
+         console.log(error.message);
+      }
+
    }
 
    const logout = () => {
@@ -42,11 +50,10 @@ function App() {
       !access && navigate('/');
    }, [access]);
 
-   const onSearch = (id) => {
+   const onSearch = async (id) => {
+      try {
 
-
-      // axios(`https://rickandmortyapi.com/api/character/${id}`)
-      axios(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
+         const { data } = await axios(`http://localhost:3001/rickandmorty/character/${id}`)
 
 
          if (characters.some(character => character.id === data.id)) {
@@ -54,12 +61,15 @@ function App() {
          }
          if (data.name) {
             setCharacters((oldChars) => [...oldChars, data]);
-         } else {
-            window.alert('¡No hay personajes con este ID!');
          }
 
 
-      });
+
+      } catch (error) {
+         alert('¡No hay personajes con este ID!');
+      }
+
+
    }
 
    const onCLose = (id) => {
