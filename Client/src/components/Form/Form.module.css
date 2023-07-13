@@ -57,7 +57,6 @@ body {
 }
 
 .login__img:hover {
-    
     transform: scale(1.1);
     transition: all 0.3s ease-in-out;
 }
@@ -75,15 +74,15 @@ body {
     font-size: 3rem;
 
 }
-
+/* 
 .login__title::after {
     content: "";
     display: block;
-    width: 80px;
+    width: 100px;
     height: 4px;
     background: var(--color-primary);
     margin-top: 10px;
-}
+} */
 
 .login__input {
     padding: 18px 10px;

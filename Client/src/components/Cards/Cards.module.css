@@ -4,14 +4,41 @@
     --color-boton: #fff;
 } */
 
-.container {
+/* .container {
     width: 100%;
     min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    /* background-image: linear-gradient(360deg, var(--color-price) 50%, #fff 50%); */
-    /* si un elemento ya no entra en el contenedor se desplaza hacia abajo con wrap*/
+    justify-content: space-evenly; 
     flex-wrap: wrap;
+} */
 
+/* .container{
+    display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        width: 300px;
+        height: 500px;
+        border: 1px solid #ccc;
+        overflow: hidden;
+        border-radius: 10px;
+} */
+
+
+
+.cards {
+    width: 90%;
+    /* outline es como border pero no ocupa ese espacio extra */
+    /* outline: 3px solid red; */
+    max-width: 1200px;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: var(--padding-container);
+}
+
+.cards__container {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 40px 0;
+    flex-wrap: wrap;
 }

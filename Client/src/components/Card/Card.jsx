@@ -9,7 +9,7 @@ function Card(props) {
 
    const [isFav, setIsFav] = useState(false);
 
-   
+
 
    const handleFavorite = () => {
 
@@ -32,28 +32,43 @@ function Card(props) {
 
    return (
 
-      <div className={style.card__item} >
-         {
-            isFav ? (
-               <button onClick={handleFavorite}>❤️</button>
-            ) : (
-               <button onClick={handleFavorite}>🤍</button>
-            )
-         }
-         <button className={style.show__close} onClick={() => {
-            props.onClose(props.id)
-         }}>X</button>
-         <Link to={`/detail/${props.id}`} >
 
-            <h1 className={style.title}>{props.name}</h1>
-         </Link>
-         {/* <h2 className={style.card__features}>{props.status}</h2> */}
-         <h2 className={style.card__features}>{props.species}</h2>
-         <h2 className={style.card__features}>{props.gender}</h2>
-         {/* <h2 className={style.card__features}>{props.origin.name}</h2> */}
 
-         <img src={props.image} alt={`${props.name}`} />
+      <div className={style.cards} >
+         <div className={style.card__buttons}>
+
+
+            {
+
+               isFav ? (
+                  <button className={style.card__btn} onClick={handleFavorite}>❤️</button>
+               ) : (
+                  <button className={style.card__btn} onClick={handleFavorite}>🤍</button>
+               )
+            }
+            <button className={style.show__close} onClick={() => {
+               props.onClose(props.id)
+
+            }}>X</button>
+
+         </div>
+         <div className={style.card__container}>
+
+           
+
+            <Link to={`/detail/${props.id}`} >
+               <h1 className={style.card__name}>{props.name}</h1>
+            </Link>
+
+
+            <img src={props.image} alt={`${props.name}`} className={style.card__img} />
+
+
+         </div>
       </div>
+
+
+
    );
 }
 
@@ -70,4 +85,4 @@ const mapStateToProps = (state) => {
    }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Card);
+export default connect(mapStateToProps, mapDispatchToProps)(Card);
