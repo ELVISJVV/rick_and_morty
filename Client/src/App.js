@@ -106,7 +106,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/favorites" element={<Favorite />} />
 
-
+      
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="*" element={<NotFound />} />
          </Routes>
