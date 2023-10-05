@@ -15,8 +15,8 @@ import { useLocation } from 'react-router-dom';
 import Favorite from './components/Favorites/Favorites.jsx';
 
 const URL = 'http://localhost:3001/rickandmorty/login/';
-// const EMAIL = "admin@admin.com"
-// const PASSWORD = "admin123"
+const EMAIL = "admin@admin.com"
+const PASSWORD = "admin123"
 
 
 function App() {
@@ -26,18 +26,22 @@ function App() {
    const navigate = useNavigate();
 
    const login = async (userData) => {
+         if (userData.email === EMAIL && userData.password === PASSWORD) {
+            setAccess(true);
+            navigate('/home');
+            return;
+         }
+      // try {
+      //    const { email, password } = userData;
+      //    const { data } = await axios(URL + `?email=${email}&password=${password}`)
 
-      try {
-         const { email, password } = userData;
-         const { data } = await axios(URL + `?email=${email}&password=${password}`)
+      //    const { access } = data;
+      //    setAccess(access);
+      //    access && navigate('/home');
 
-         const { access } = data;
-         setAccess(access);
-         access && navigate('/home');
-
-      } catch (error) {
-         console.log(error.message);
-      }
+      // } catch (error) {
+      //    console.log(error.message);
+      // }
 
    }
 
